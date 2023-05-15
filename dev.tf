@@ -4,3 +4,12 @@ resource "aws_ssm_parameter" "foo" {
   type  = "String"
   value = "bar"
 }
+
+resource "aws_s3_bucket" "example" {
+  bucket = "my-test-tf-bucket-oidc"
+
+  tags = {
+    Name        = "My oidc bucket"
+    Environment = "Dev"
+  }
+}
