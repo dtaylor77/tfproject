@@ -52,7 +52,7 @@ on:
 permissions:
   contents: read
 
-jobs:
+#jobs:
   terraform:
     name: 'Terraform'
     runs-on: ubuntu-latest
