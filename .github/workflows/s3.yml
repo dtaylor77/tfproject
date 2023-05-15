@@ -1,6 +1,6 @@
 name: AWS example workflow
 on:
-  push
+  #push
 env:
   BUCKET_NAME : "dtaylor7771237432-bucket-name"
   AWS_REGION : "ap-south-1"
