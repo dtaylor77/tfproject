@@ -6,10 +6,10 @@ resource "aws_ssm_parameter" "foo" {
 }
 
 resource "aws_s3_bucket" "example" {
-  bucket = "my-test-tf-bucket-oidc"
+  bucket = "my-test-tf-bucket-oidc12347"
 
   tags = {
-    Name        = "My oidc bucket"
+    Name        = "My-oidc-bucket"
     Environment = "Dev"
   }
 }
