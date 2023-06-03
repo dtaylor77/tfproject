@@ -54,6 +54,7 @@ jobs:
         id: plan
         run: terraform plan -no-color
         if: github.event_name == 'pull_request'
+        if: github.event_name == 'push'
         continue-on-error: false
 
       - uses: actions/github-script@v6
