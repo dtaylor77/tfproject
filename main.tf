@@ -12,7 +12,7 @@
 # Create instance
 
 resource "aws_instance" "webserver" {
-  ami           = "ami-0d78d8707cd9c1be8"
+  ami           = "ami-0d04e6652cb408e57"
   instance_type = "t2.micro"
   #key_name = file("${path.module}/id_rsa_pub")
   key_name = "canadakey"
@@ -34,7 +34,6 @@ resource "aws_vpc" "main_vpc" {
 resource "aws_subnet" "dev_subnet" {
   vpc_id     = aws_vpc.main_vpc.id
   cidr_block = "10.7.1.0/24"
-  availability_zone = "ca-central-1d"
 
   tags = {
     Name = "dev_subnet"
