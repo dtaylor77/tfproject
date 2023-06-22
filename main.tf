@@ -12,8 +12,8 @@
 # Create instance
 
 resource "aws_instance" "webserver" {
-  ami           = var.ami_id
-  instance_type = var.instance_type
+  ami           = "ami-0d78d8707cd9c1be8"
+  instance_type = "t2.micro"
   #key_name = file("${path.module}/id_rsa_pub")
   key_name = "canadakey"
   vpc_security_group_ids = [aws_security_group.allow_ports.id]
