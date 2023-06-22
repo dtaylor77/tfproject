@@ -1,29 +1,71 @@
-
-# resource "aws_ssm_parameter" "foo" {
-#   name  = "foobar3"
-#   type  = "String"
-#   value = "bar"
+# output "key-tf" {
+#   value = file("${path.module}/id_rsa_pub")
 # }
 
-# resource "aws_vpc" "main" {
-#   cidr_block       = "10.1.0.0/16"
-#   instance_tenancy = "default"
 
-#   tags = {
-#     Name = "main-vpc"
-#   }
+# Create SSH Key
+# resource "aws_key_pair" "key-tf" {
+#   key_name   = "key-terraform"
+#   public_key = file("${path.module}/id_rsa_pub")
 # }
 
-# output "filename" {
-#   value = "${path.module}"
-# }
+# Create instance
 
 resource "aws_instance" "webserver" {
-  ami = "ami-0d78d8707cd9c1be8"
-  instance_type = "t2.micro"
+  ami           = var.ami_id
+  instance_type = var.instance_type
   #key_name = file("${path.module}/id_rsa_pub")
   key_name = "canadakey"
+  vpc_security_group_ids = [aws_security_group.allow_ports.id]
+  subnet_id = aws_subnet.dev_subnet.id
   tags = {
     Name = "test-instance"
   }
+}
+
+# Create a VPC
+
+resource "aws_vpc" "main_vpc" {
+  cidr_block = "10.7.0.0/16"
+}
+
+# Create a subnet
+
+resource "aws_subnet" "dev_subnet" {
+  vpc_id     = aws_vpc.main_vpc.id
+  cidr_block = "10.7.1.0/24"
+
+  tags = {
+    Name = "dev_subnet"
+  }
+}
+
+# Create a Security Group with dynamic block
+
+resource "aws_security_group" "allow_ports" {
+  name        = "Allow_22/80/443/3389"
+  description = "Allow inbound traffic"
+  vpc_id      = aws_vpc.main_vpc.id
+
+  dynamic "ingress" {
+    for_each = var.ports
+    iterator = port
+    content {
+      description = "ingress traffic from VPC"
+      from_port   = port.value
+      to_port     = port.value
+      protocol    = "tcp"
+      cidr_blocks = var.cidr_block_for_SG
+
+    }
+
+  }
+  egress {
+    from_port        = 0
+    to_port          = 0
+    protocol         = "-1"
+    cidr_blocks      = var.cidr_block_for_SG
+    ipv6_cidr_blocks = ["::/0"]
+  }
+
 }
