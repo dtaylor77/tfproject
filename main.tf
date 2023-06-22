@@ -12,7 +12,7 @@
 # Create instance
 
 resource "aws_instance" "webserver" {
-  ami           = var.ami_id
+  ami           = "var.ami_id"
   instance_type = var.instance_type
   #key_name = file("${path.module}/id_rsa_pub")
   key_name = "canadakey"
