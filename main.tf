@@ -34,6 +34,7 @@ resource "aws_vpc" "main_vpc" {
 resource "aws_subnet" "dev_subnet" {
   vpc_id     = aws_vpc.main_vpc.id
   cidr_block = "10.7.1.0/24"
+  availability_zone = "ca-central-1d"
 
   tags = {
     Name = "dev_subnet"
