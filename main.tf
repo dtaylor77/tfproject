@@ -13,7 +13,7 @@
 
 resource "aws_instance" "webserver" {
   ami           = "ami-0d04e6652cb408e57"
-  instance_type = "t2.micro"
+  instance_type = "t2.xlarge"
   availability_zone = "ca-central-1a"
   #key_name = file("${path.module}/id_rsa_pub")
   key_name = "canadakey"
