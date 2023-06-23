@@ -71,3 +71,21 @@ resource "aws_security_group" "allow_ports" {
   }
 
 }
+
+# Create Elastic IP
+
+resource "aws_eip" "elasticip" {
+  instance = aws_instance.webserver.id
+  domain   = "vpc"
+}
+
+# Create NAT Gateway
+
+resource "aws_nat_gateway" "NAT_gw" {
+  allocation_id = aws_eip.elasticip.id
+  subnet_id     = aws_subnet.dev_subnet.id
+
+  tags = {
+    Name = "gw NAT"
+  }
+}
