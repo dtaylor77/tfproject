@@ -3,7 +3,7 @@ variable "ports" {
 }
 
 variable "cidr_block_for_SG" {
-  
+
 }
 
 # variable "ami_id" {
