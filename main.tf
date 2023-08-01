@@ -49,10 +49,10 @@
   description = "Allow inbound traffic"
   vpc_id      = aws_vpc.main_vpc.id
 
-  dynamic "ingress" {
+ # dynamic "ingress" {
     for_each = var.ports
     iterator = port
-    content {
+#   content {
       description = "ingress traffic from VPC"
       from_port   = port.value
       to_port     = port.value
