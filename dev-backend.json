@@ -1,0 +1,5 @@
+{
+	"bucket": "dev-terraform-remote-state",
+	"key": "security/terraform.tfstate",
+	"region": "us-east-1"
+}
