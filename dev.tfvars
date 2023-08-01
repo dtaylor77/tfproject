@@ -1,0 +1,7 @@
+environment        = "dev"
+aws_profile        = "security-DEV"
+account_id         = "530265417107"
+vpc_id             = "vpc-097a5e37ff57a6466"
+account_name       = "Niki"
+s3_bucket          = "dev-terraform-cloudtrail-bucket-dev"
+optimization       = "true"
