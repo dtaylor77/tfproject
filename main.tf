@@ -12,23 +12,23 @@
 # Create instance
 
 #resource "aws_instance" "webserver" {
-  ami               = data.aws_ami.ami_id.id
-  instance_type     = "t2.micro"
-  availability_zone = "ca-central-1a"
+ # ami               = data.aws_ami.ami_id.id
+ # instance_type     = "t2.micro"
+ # availability_zone = "ca-central-1a"
   #key_name = file("${path.module}/id_rsa_pub")
   key_name               = "canadakey"
   vpc_security_group_ids = [aws_security_group.allow_ports.id]
   subnet_id              = aws_subnet.dev_subnet.id
   tags = {
     Name = "test-instance"
-  }
-}
+#  }
+#}
 
 # Create a VPC
 
 #resource "aws_vpc" "main_vpc" {
   cidr_block = "10.7.0.0/16"
-}
+#}
 
 # Create a subnet
 
@@ -39,8 +39,8 @@
 
   tags = {
     Name = "dev_subnet"
-  }
-}
+  #}
+#}
 
 # Create a Security Group with dynamic block
 
@@ -59,18 +59,18 @@
       protocol    = "tcp"
       cidr_blocks = var.cidr_block_for_SG
 
-    }
+ #   }
 
-  }
+  #}
   egress {
     from_port        = 0
     to_port          = 0
     protocol         = "-1"
     cidr_blocks      = var.cidr_block_for_SG
     ipv6_cidr_blocks = ["::/0"]
-  }
+  #}
 
-}
+#}
 
 #data "aws_ami" "ami_id" {
   most_recent = true
@@ -79,15 +79,15 @@
   filter {
     name   = "root-device-type"
     values = ["ebs"]
-  }
+ # }
   filter {
     name   = "name"
     values = ["al2023-ami-2023.0.20230503.0-kernel-6.1-x86_64"]
-  }
+#  }
   filter {
     name   = "virtualization-type"
     values = ["hvm"]
-  }
+ # }
 
-}
+#}
 
