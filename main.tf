@@ -1,4 +1,4 @@
-// # output "key-tf" {
+# output "key-tf" {
 #   value = file("${path.module}/id_rsa_pub")
 # }
 
@@ -11,7 +11,7 @@
 
 # Create instance
 
-resource "aws_instance" "webserver" {
+#resource "aws_instance" "webserver" {
   ami               = data.aws_ami.ami_id.id
   instance_type     = "t2.micro"
   availability_zone = "ca-central-1a"
@@ -26,13 +26,13 @@ resource "aws_instance" "webserver" {
 
 # Create a VPC
 
-resource "aws_vpc" "main_vpc" {
+#resource "aws_vpc" "main_vpc" {
   cidr_block = "10.7.0.0/16"
 }
 
 # Create a subnet
 
-resource "aws_subnet" "dev_subnet" {
+#resource "aws_subnet" "dev_subnet" {
   vpc_id            = aws_vpc.main_vpc.id
   cidr_block        = "10.7.1.0/24"
   availability_zone = "ca-central-1a"
@@ -44,7 +44,7 @@ resource "aws_subnet" "dev_subnet" {
 
 # Create a Security Group with dynamic block
 
-resource "aws_security_group" "allow_ports" {
+#resource "aws_security_group" "allow_ports" {
   name        = "Allow_22/80/443/3389"
   description = "Allow inbound traffic"
   vpc_id      = aws_vpc.main_vpc.id
@@ -72,7 +72,7 @@ resource "aws_security_group" "allow_ports" {
 
 }
 
-data "aws_ami" "ami_id" {
+#data "aws_ami" "ami_id" {
   most_recent = true
   owners      = ["137112412989"]
 
@@ -90,4 +90,4 @@ data "aws_ami" "ami_id" {
   }
 
 }
-//
+
