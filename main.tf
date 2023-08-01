@@ -80,7 +80,7 @@
     name   = "root-device-type"
     values = ["ebs"]
  # }
-  filter {
+ # filter {
     name   = "name"
     values = ["al2023-ami-2023.0.20230503.0-kernel-6.1-x86_64"]
 #  }
