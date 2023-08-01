@@ -19,6 +19,7 @@
 
 provider "aws" {
   region = "ca-central-1"
+  version = "5.1.0"
 }
 
 #terraform {
