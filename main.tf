@@ -1,4 +1,4 @@
-# output "key-tf" {
+// # output "key-tf" {
 #   value = file("${path.module}/id_rsa_pub")
 # }
 
@@ -90,3 +90,4 @@ data "aws_ami" "ami_id" {
   }
 
 }
+//
