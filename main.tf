@@ -62,7 +62,7 @@
  #   }
 
   #}
-  egress {
+ # egress {
     from_port        = 0
     to_port          = 0
     protocol         = "-1"
@@ -76,7 +76,7 @@
   most_recent = true
   owners      = ["137112412989"]
 
-  filter {
+ # filter {
     name   = "root-device-type"
     values = ["ebs"]
  # }
@@ -84,7 +84,7 @@
     name   = "name"
     values = ["al2023-ami-2023.0.20230503.0-kernel-6.1-x86_64"]
 #  }
-  filter {
+ # filter {
     name   = "virtualization-type"
     values = ["hvm"]
  # }
